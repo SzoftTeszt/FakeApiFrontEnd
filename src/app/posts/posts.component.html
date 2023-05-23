@@ -1,0 +1,29 @@
+<!-- {{posts|json}} -->
+
+<div class="row">
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        {{oszlop.text}}
+    </div>
+</div>
+
+<div *ngFor="let post of posts" class="row">
+
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        <!-- {{post.title}} -->
+        <!-- {{oszlop.key}} -->
+        
+        <span *ngIf="oszlop.type=='plain'; else inputbox">{{post[oszlop.key]}}</span>
+        
+        <ng-template #inputbox>
+        <input 
+        [type]="oszlop.type" 
+        [class]="oszlop.class" 
+        [(ngModel)]="post[oszlop.key]"
+        
+        >
+        </ng-template>
+        
+        <!-- <input type="checkbox" class="form-check-input"> -->
+    </div>
+
+</div>
